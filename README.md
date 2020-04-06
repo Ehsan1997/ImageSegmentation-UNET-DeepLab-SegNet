@@ -47,8 +47,9 @@
   * [Built With](#built-with)
 * [Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
-  * [Installation](#installation)
+  * [Obtaining Data](#obtaining-data)
 * [Usage](#usage)
+* [Results](#results)
 * [Roadmap](#roadmap)
 * [Contributing](#contributing)
 * [License](#license)
@@ -62,70 +63,82 @@
 
 [![Tissue Image and Ground Truth Example][product-screenshot]](https://github.com/Ehsan1997/ImageSegmentation-UNET-DeepLab-SegNet)
 
-There are many great README templates available on GitHub, however, I didn't find one that really suit my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need.
-
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should element DRY principles to the rest of your life :smile:
-
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue.
-
-A list of commonly used resources that I find helpful are listed in the acknowledgements.
+Originally the MonuSeg dataset consists of 30 training images, each of size 1000 x 1000. In addition to these, there are 14 testing images of the same dimensions.
+Images are in RGB format, while the ground truth is a binary image (Single Channel).
+For the purpose of training, we extracted patches of size 256 x 256 from these images with 50% overlapping, this resulted in 1080 different patches.
 
 ### Built With
-This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-* [Bootstrap](https://getbootstrap.com)
-* [JQuery](https://jquery.com)
-* [Laravel](https://laravel.com)
+Major Libraries that were used in this project,
+* [Keras](https://keras.io)
+* [Tensorflow](https://tensorflow.org)
+* [Numpy](https://numpy.org)
 
 
 
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+The notebooks provided in this repository are standalone and can be run directly using colab.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-```sh
-npm install npm@latest -g
-```
+Account on colab is recommended, although not required.
 
-### Installation
+### Obtaining Data
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-```sh
-git clone https://github.com/your_username_/Project-Name.git
-```
-3. Install NPM packages
-```sh
-npm install
-```
-4. Enter your API in `config.js`
-```JS
-const API_KEY = 'ENTER YOUR API';
-```
+Data is made public using google drive links and then directly downloaded to colab workspace with the help of *gdown*. First code cell in each notebook downloads the data.
 
 
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+There are weights for each model available, although these weights are used in the notebooks after training, separate notebooks that are only used for inference are also provided.
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+### Config File
+Due to the nature of colab, it was considered that not using a separate config file would be a better option, although a cell of code in each notebook was dedicated was the purpose of configuration.
+
+## Results
+
+### Training Settings
+
+Patches of size 256 x 256 with 50% overlap were fed to each model. The problem was treated as a **binary classification problem**. Generally an auto-encoder like model was used, where the input was 256 x 256 x 3 and the output was 256 x 256 x 1.
+*Sigmoid activation* along with *binary cross entropy loss* was used. *Adam* optimizer was used. Techniques such as *Early Stopping*, *Reducing Learning Rate on Plateu* and *Saving Best Model* were used.
+The Dataset already provides a test set, so in order to make sure no overfitting on the test set was taking place, we separated 108 patches from the training set as validation data.
+
+### Quantitative Results
+| Model | Accuracy | Dice Coefficient | F1 Score | Binary Cross Entropy Loss|
+| ------------- | ------------- | ------------- | ------------- | ------------- |
+| UNET | 89.63% | 0.7199 | 0.7567 | **0.2803** |
+| SegNet | 89.31% | 0.6858 | 0.7209 | 0.3076 |
+| DeepLabV3 | **90.63%** | **0.7696** | **0.7802** | 0.3735 |
 
 
+
+#### *For each model, (i)Qualitative Results (ii)Training and Validation graphs are shown.*
+
+### Qualitative Results
+
+#### UNET
+![UNET Visual Results][unet-qual-res]
+#### SegNet
+![SegNet Visual Results][segnet-qual-res]
+#### Deep Lab v3+
+![Deep Lab v3+ Visual Results][deeplabv3+-qual-res]
+
+### Training and Validation Graphs
+
+#### UNET
+![UNET Training Loss][unet-train-graph]
+#### SegNet
+![SegNet Training Loss][segnet-train-graph]
+#### Deep Lab v3+
+![Deep Lab v3+ Training Loss][deeplabv3+-train-graph]
 
 <!-- ROADMAP -->
 ## Roadmap
 
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a list of proposed features (and known issues).
+See the [open issues](https://github.com/Ehsan1997/ImageSegmentation-UNET-DeepLab-SegNet/issues) for a list of proposed features (and known issues).
 
 
 
@@ -152,14 +165,17 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
+Muhammad Ehsan ul Haq - [@EhsanBinEjaz](https://twitter.com/EhsanBinEjaz) - ehsanulhaq18@gmail.com
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Project Link: [https://github.com/Ehsan1997/ImageSegmentation-UNET-DeepLab-SegNet](https://github.com/Ehsan1997/ImageSegmentation-UNET-DeepLab-SegNet)
 
 
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
+* [UNET Implementation by hlamba28](https://github.com/hlamba28/UNET-TGS)
+* [SegNet Implementation by ykamikawa](https://github.com/ykamikawa/tf-keras-SegNet)
+* [DeepLab v3+ Implementation by xuannianz](https://github.com/xuannianz/keras-deeplab-v3-plus)
 * [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
 * [Img Shields](https://shields.io)
 * [Choose an Open Source License](https://choosealicense.com)
@@ -186,8 +202,14 @@ Project Link: [https://github.com/your_username/repo_name](https://github.com/yo
 [stars-url]: https://github.com/Ehsan1997/ImageSegmentation-UNET-DeepLab-SegNet/stargazers
 [issues-shield]: https://img.shields.io/github/issues/Ehsan1997/ImageSegmentation-UNET-DeepLab-SegNet.svg?style=flat-square
 [issues-url]: https://github.com/Ehsan1997/ImageSegmentation-UNET-DeepLab-SegNet/issues
-[license-shield]: https://img.shields.io/github/license/Ehsan1997/ImageSegmentation-UNET-DeepLab-SegNet.svg?style=flat-square
+[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=flat-square
 [license-url]: https://github.com/Ehsan1997/ImageSegmentation-UNET-DeepLab-SegNet/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/ehsansonofejaz
 [product-screenshot]: temp_tissue_image_with_gt.png
+[unet-train-graph]: unet-train-graph.png
+[segnet-train-graph]: segnet-train-graph.png
+[deeplabv3+-train-graph]: deeplabv3+-train-graph.png
+[unet-qual-res]: unet-qual-res.png
+[segnet-qual-res]: segnet-qual-res.png
+[deeplabv3+-qual-res]: deeplabv3+-qual-res.png

@@ -44,6 +44,15 @@
     ·
     <a href="https://github.com/Ehsan1997/ImageSegmentation-UNET-DeepLab-SegNet/blob/master/UNET_Inference.ipynb">UNET (Inference Only)</a>
   </p>
+  
+  <p align="center">
+    <a href="https://drive.google.com/open?id=14YR7A-0ysGWnkQw74Rx3LAPAXiALHFC2">Deep Lab v3+ (Weights Only)</a>
+    ·
+    <a href="https://drive.google.com/open?id=1BTaW68vqfNVvYjZ1XXEAqAsuc6jkJ6_u">SegNet (Weights Only)</a>
+    ·
+    <a href="https://drive.google.com/open?id=10QqK7B05Gey58x05bfEc97LXuFTX1dot">UNET (Weights Only)</a>
+  </p>
+  
 </p>
 
 

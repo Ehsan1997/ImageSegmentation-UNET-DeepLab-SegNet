@@ -126,6 +126,29 @@ If you have to use the weights with your own model, then just upload the desired
 ### Config File
 Due to the nature of colab, it was considered that not using a separate config file would be a better option, although a cell of code in each notebook was dedicated was the purpose of configuration.
 
+Example of Config Class
+```python
+class Config(object):
+  train_parent_dir="ModMonuSeg/Training/"
+  test_parent_dir="ModMonuSeg/Test/"
+  img_folder="TissueImages/"
+  gt_folder="GroundTruth/"
+  train_gt_extension='png'
+  test_gt_extension='png'
+  im_width = 256
+  im_height = 256
+  epochs=50
+  batch_size=64
+  optimizer=Adam()
+  callbacks = [
+    EarlyStopping(patience=10, verbose=1),
+    ReduceLROnPlateau(factor=0.1, patience=5, min_lr=0.00001, verbose=1),
+    ModelCheckpoint('model-unet-best.h5', verbose=1, save_best_only=True, save_weights_only=True)
+  ]
+
+config = Config()
+```
+
 ## Results
 
 ### Training Settings

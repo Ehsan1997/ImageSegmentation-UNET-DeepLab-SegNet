@@ -77,7 +77,7 @@ For the purpose of training, we extracted patches of size 256 x 256 from these i
 
 ### Network Diagrams
 
-**For Detailed diagrams, see the inference notebooks attached.
+**For Detailed diagrams, see the inference notebooks attached.**
 
 #### UNET
 ![UNET Architecture](https://miro.medium.com/max/2824/1*f7YOaE4TWubwaFF7Z1fzNw.png)

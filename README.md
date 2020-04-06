@@ -36,6 +36,14 @@
     ·
     <a href="https://github.com/Ehsan1997/ImageSegmentation-UNET-DeepLab-SegNet/blob/master/UNET_ACV_Assg3.ipynb">UNET (Training + Inference)</a>
   </p>
+  
+  <p align="center">
+    <a href="https://github.com/Ehsan1997/ImageSegmentation-UNET-DeepLab-SegNet/blob/master/DeepLabv3%2B_Inference.ipynb">Deep Lab v3+ (Inference Only)</a>
+    ·
+    <a href="https://github.com/Ehsan1997/ImageSegmentation-UNET-DeepLab-SegNet/blob/master/UNET_Inference.ipynb">SegNet (Inference Only)</a>
+    ·
+    <a href="https://github.com/Ehsan1997/ImageSegmentation-UNET-DeepLab-SegNet/blob/master/UNET_Inference.ipynb">UNET (Inference Only)</a>
+  </p>
 </p>
 
 
@@ -108,7 +116,12 @@ Data is made public using google drive links and then directly downloaded to col
 
 There are weights for each model available, although these weights are used in the notebooks after training, separate notebooks that are only used for inference are also provided.
 
-Just upload the desired model weights to the workspace and run the inference notebook.
+In order to download the respective models, use the following link:
+[MonuSeg Trained Weights](https://drive.google.com/drive/folders/1UlMXUFPBBcmrRbzcZKPCv5uQoZkMghLy?usp=sharing)
+
+All the inference notebooks are standalone and will automatically download the desired model weights.
+
+If you have to use the weights with your own model, then just upload the desired model weights to the workspace and run the inference notebook.
 
 ### Config File
 Due to the nature of colab, it was considered that not using a separate config file would be a better option, although a cell of code in each notebook was dedicated was the purpose of configuration.
@@ -126,7 +139,7 @@ The Dataset already provides a test set, so in order to make sure no overfitting
 | ------------- | ------------- | ------------- | ------------- | ------------- |
 | UNET | 89.63% | 0.7199 | 0.7567 | **0.2803** |
 | SegNet | 89.31% | 0.6858 | 0.7209 | 0.3076 |
-| DeepLabV3 | **90.63%** | **0.7696** | **0.7802** | 0.3735 |
+| DeepLabV3+ | **90.63%** | **0.7696** | **0.7802** | 0.3735 |
 
 
 

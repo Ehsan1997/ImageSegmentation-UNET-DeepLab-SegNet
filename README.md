@@ -67,6 +67,19 @@ Originally the MonuSeg dataset consists of 30 training images, each of size 1000
 Images are in RGB format, while the ground truth is a binary image (Single Channel).
 For the purpose of training, we extracted patches of size 256 x 256 from these images with 50% overlapping, this resulted in 1080 different patches.
 
+### Network Diagrams
+
+**For Detailed diagrams, see the inference notebooks attached.
+
+#### UNET
+![UNET Architecture](https://miro.medium.com/max/2824/1*f7YOaE4TWubwaFF7Z1fzNw.png)
+
+#### SegNet
+![SegNet Architecture](https://www.researchgate.net/profile/Vijay_Badrinarayanan/publication/283471087/figure/fig1/AS:391733042008065@1470407843299/An-illustration-of-the-SegNet-architecture-There-are-no-fully-connected-layers-and-hence.png)
+
+#### DeepLab v3+
+![DeepLab v3+ Architecture](https://2.bp.blogspot.com/-gxnbZ9w2Dro/WqMOQTJ_zzI/AAAAAAAACeA/dyLgkY5TnFEf2j6jyXDXIDWj_wrbHhteQCLcBGAs/s1600/image2.png)
+
 ### Built With
 Major Libraries that were used in this project,
 * [Keras](https://keras.io)
@@ -94,6 +107,8 @@ Data is made public using google drive links and then directly downloaded to col
 ## Usage
 
 There are weights for each model available, although these weights are used in the notebooks after training, separate notebooks that are only used for inference are also provided.
+
+Just upload the desired model weights to the workspace and run the inference notebook.
 
 ### Config File
 Due to the nature of colab, it was considered that not using a separate config file would be a better option, although a cell of code in each notebook was dedicated was the purpose of configuration.
